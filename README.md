@@ -7,6 +7,16 @@ The basis of this tutorial are constraint pulling simulations as described in
 Download and unpack tutorial_files.tar.gz. You will find a folder with the following files:
 
 Files for run input commands:
-`3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp
-3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp`
+`3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp 
+3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp
+`
 
+Topologies:
+`3ptb_AMBER99SB_ben.top
+3ptb_AMBER99SB_ben_Protein_chain_A.itp
+3ptb_AMBER99SB_ben_Ion_chain_B.itp
+3ptb_ben_H2_GMX_RESP.itp
+posre_Protein_chain_A.itp
+posre_Ion_chain_B.itp
+posre_ben.itp
+`
