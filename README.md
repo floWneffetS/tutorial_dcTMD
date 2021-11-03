@@ -4,14 +4,17 @@ Tutorial for using the usage of the dcTMD approach and Langevin simulations usin
 The basis of this tutorial are constraint pulling simulations as described in 
 
 ## Usage
+
+### Input files
 Download and unpack tutorial_files.tar.gz. You will find a folder with the following files:
 
 Files for run input commands:
 `3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp 
 3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp
 `
+The `pushEQUIBRUN.mdp` file is an initial equilibration file for generating start simulation files with different initial velocity distributions. The `pushRUN_v0.001.mdp` file is the respective command input for the non-equilibrium pulling. `3ptb` refers to the 
 
-Topologies:
+Topologies and position restraint files:
 `3ptb_AMBER99SB_ben.top
 3ptb_AMBER99SB_ben_Protein_chain_A.itp
 3ptb_AMBER99SB_ben_Ion_chain_B.itp
@@ -20,3 +23,5 @@ posre_Protein_chain_A.itp
 posre_Ion_chain_B.itp
 posre_ben.itp
 `
+
+Index file:
