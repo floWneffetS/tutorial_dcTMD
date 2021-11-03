@@ -3,6 +3,10 @@ Tutorial for using the usage of the dcTMD approach and Langevin simulations usin
 
 The basis of this tutorial are constraint pulling simulations as described in 
 
-# Usage
+## Usage
 Download and unpack tutorial_files.tar.gz. You will find a folder with the following files:
+
+Files for run input commands:
+`3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp
+3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp`
 
