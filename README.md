@@ -26,7 +26,7 @@ In the following, we assume that you are familiar with the general usage of Grom
 Download and unpack tutorial_files.tar.gz via
 
 ```
-tar -xvf ./tutorial_files.tar
+tar -xzvf ./tutorial_files.tar
 ```
 
 You will find a folder with the following files:
@@ -54,7 +54,30 @@ Index file:
 **Important:** the index file needs to include an anchor group from whose center of mass the ligand is pulled away (in this case: the group `[sheet]` containing C-alpha atoms from the central beta-sheet) and the ligand itself (or better, the heavy atoms of the ligand, here group `[ BEN_heavy ]`). If you want to create a respective anchor index for your own simulation problem, choose an anchor group that is tighly connected to the remainder of the protein (such as C-alpha atoms in alpha-helices and beta-sheets). The vector connecting the centers of mass of anchor and ligand needs to roughly point into the direction of a putative unbinding path.
 
 
-### Carrying out simulations
+### Carrying out pulling MD simulations
+
+For the generation of the input structure in your own project, we advise you to carry out an initial NPT equilibration simulation of at least 10 ns length. Here, we have done this already for you and generated an equilibrated structure.
+
+You will need a number (between 100-200) of equilibrated trajectories with different initial velocity distributions. For this, generate an initial equilibration folder and the simulation start TPR files using:
+
+```
+mkdir equib
+cd equib/
+
+for i in {000..099}
+do
+gmx grompp -f ../3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp -c ../3ptb_AMBER99SB_ben.gro -r ../3ptb_AMBER99SB_ben.gro -p ../3ptb_AMBER99SB_ben.top -n ../3ptb_AMBER99SB_ben.ndx -o 3ptb_AMBER99SB_ben_pushEQUIBRUN_"$i".tpr -maxwarn 1 
+done
+```
+
+and run the individual simulations via e.g.
+
+```
+gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushEQUIBRUN_001
+```
+
+As these initial runs only require simulations of 0.1 ns length, they should be ready within a reasonably short time.
+
 
 
 ## dcTMD analysis
