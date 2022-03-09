@@ -120,7 +120,10 @@ The respecitve flags read:
 - `-vel`: pulling velocity used in the simulations in nm/ps
 - `-T`: temperature used in the pulling simulations
 - `-N`: number of input trajectories
-- `-av`: 
+- `-av`: width in data points of the running average window. We recommend to use a width of 40 to 200 per 1000 data points.
+- `-sigma`: sigma width in data points of the Gaussian filter. We recommend to use a sigma of 40 per 1000 data points.
+  
+Please note that the friction factors are very noisy and converge very badly. This is natural, as they technically are a measure of the force variance, whose estimator converges significantly slower than the one of the mean force. However, the only sources of this noise comes from thermal fluctuations and therefore can be removed via the two filtering functions. 
   
   
 ## Langevin simulations
