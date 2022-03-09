@@ -166,4 +166,4 @@ The program flags indicate:
   
 Here we gegnerate one single Langevin trajectory file of 1 ms length per temperature. On a single core of a modern PC, this should require ca. 5 hours. Alternatively, you may start 5 simulations with 0.2 ms length each ad different seed, which is actually beneficial for convergence.
   
-After completion of the simulations, use the Pytho script ``
+After completion of the simulations, use the Pytho script `LE_bin_corer.py` to core the data (see e.g. [Nagel et al.](https://aip.scitation.org/doi/10.1063/1.5081767) for the background of this approach) and write out files conntaining the observed transition times. For trypsin, we decided to attribute distances <0.3 nm to the bound state coree, and distances >0.9 nm to the unnbound state core. 
