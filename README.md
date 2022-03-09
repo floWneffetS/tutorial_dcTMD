@@ -143,7 +143,7 @@ tar -xzvf ./Tboost_tutorial_files.tar
 ```
 and continue from there. Furthermore, download the C++ code, the CMake file and the two Jupyter notebooks from [the T-boosting repository](https://github.com/floWneffetS/Langevin_T_boost). Follow the instructions there to compile the Langevin integrator code.
   
-You will need to decide on a suitable temperature range for your T-boosting calculations. This requires a bit of testing and is different for each system. In the case of Trypsin as used here, a temperature range of 400 to 900 K is a good start. As a rule of thumb, you should observe several 1000s of transitions over the main barrier for the highest temperture. Start Langevin simulations using the Langevin integrator as:
+You will need to decide on a suitable temperature range for your T-boosting calculations. This requires a bit of testing and is different for each system. In the case of Trypsin as used here, a temperature range of 400 to 900 K is a good start. As a rule of thumb, you should observe several 1000s of transitions over the main barrier for the highest temperture. The notebook `error_estimation_T_boosting.ipynb` helps you to estimate the number of temperature points and transitions for the convergence of transition rates. Start Langevin simulations using the Langevin integrator as:
 ```
 for i in 400 450 500 550 600 650 700 750 800 850 900
 do 
@@ -164,4 +164,6 @@ The program flags indicate:
 - `-n`: number of points of the free energy in the input free energy file
 - `-ngamma`: number of points of Gamma in the input friction file
   
-Here we gegnerate one single Langevin trajectory file of 1 ms length per temperatrue. On a single core of a modern PC, this should require ca. 5 hours. Alternatively, you may start 5 simulations with 0.2 ms length each.
+Here we gegnerate one single Langevin trajectory file of 1 ms length per temperature. On a single core of a modern PC, this should require ca. 5 hours. Alternatively, you may start 5 simulations with 0.2 ms length each ad different seed, which is actually beneficial for convergence.
+  
+After completion of the simulations, use the Pytho script ``
