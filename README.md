@@ -59,7 +59,6 @@ Index file:
 For the generation of the input structure in your own project, we advise you to carry out an initial NPT equilibration simulation of at least 10 ns length. Here, we have done this already for you and generated an equilibrated structure.
 
 You will need a number (between 100-200) of equilibrated trajectories with different initial velocity distributions. For this, generate an initial equilibration folder and the simulation start TPR files using:
-
 ```
 mkdir equib
 cd equib/
@@ -69,14 +68,25 @@ do
 gmx grompp -f ../3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp -c ../3ptb_AMBER99SB_ben.gro -r ../3ptb_AMBER99SB_ben.gro -p ../3ptb_AMBER99SB_ben.top -n ../3ptb_AMBER99SB_ben.ndx -o 3ptb_AMBER99SB_ben_pushEQUIBRUN_"$i".tpr -maxwarn 1 
 done
 ```
-
 and run the individual simulations via e.g.
-
 ```
 gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushEQUIBRUN_001
 ```
+As these initial runs only require simulations of 0.1 ns length, they should be ready within a reasonably short time, i.e., some minutes.
 
-As these initial runs only require simulations of 0.1 ns length, they should be ready within a reasonably short time.
+When all equilibration simulations simulations have been carried out, prepare the individual pulling trajectories via:
+```
+for i in {000..099}
+do
+gmx grompp -f ../3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp -c 3ptb_AMBER99SB_ben_pushEQUIBRUN_"$i".gro -p ../3ptb_AMBER99SB_ben.top -n ../3ptb_AMBER99SB_ben.ndx -o 3ptb_AMBER99SB_ben_pushRUN_0.001_"$i".tpr
+done
+```
+and run them via e.g.:
+```
+gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushRUN_0.001_001
+```
+Note that the notation `*_0.001_*` stands for a velocity in Gromacs units of 0.001 nm/ps, i.e., 1 m/s. To our current experience, this is a sweet-spot velocity with a best trrade-off between slow pulling and minimal computational effort. These simulations will require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
+
 
 
 
