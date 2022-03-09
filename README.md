@@ -85,7 +85,7 @@ and run them via e.g.:
 ```
 gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushRUN_0.001_001
 ```
-Note that the notation `*_0.001_*` stands for a velocity in Gromacs units of 0.001 nm/ps, i.e., 1 m/s. To our current experience, this is a sweet-spot velocity with a best trrade-off between slow pulling and minimal computational effort. These simulations will require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
+Note that the notation `*_0.001_*` stands for a velocity in Gromacs units of 0.001 nm/ps, i.e., 1 m/s. To our current experience, this is a sweet-spot velocity with the best trade-off between slow pulling and minimal computational effort. These simulations will require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
 
 
 
