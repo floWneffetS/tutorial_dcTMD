@@ -1,6 +1,5 @@
 # About
-Tutorial for using the usage of the dcTMD approach and Langevin simulations using the trypsin-benzamidine complex (see [Wolf et al., Nat. Commun. 2020, 11, 2918](https://www.nature.com/articles/s41467-020-16655-1)) as example. Required programs are Gromacs v2018 and higher, the script NEQGamma.py from the dcTMD repository, and LE_1dim_reflect.cpp from the Langevin_T_boost repository.
-
+Tutorial for using the usage of the dcTMD approach and Langevin simulations using the trypsin-benzamidine complex (see [Wolf et al., Nat. Commun. 2020, 11, 2918](https://www.nature.com/articles/s41467-020-16655-1)) as example.
 The basis of this tutorial are constraint pulling simulations as described in [Wolf and Stock, JCTC 2018, 14, 6175](https://pubs.acs.org/doi/full/10.1021/acs.jctc.8b00835). For pathway separation (advanced topic, see below), we recommend the usage of a principal component analysis (PCA) as possible via our [fastPCA code](https://github.com/moldyn/FastPCA).
 
 # Licensing
@@ -15,7 +14,11 @@ If you perform a dcTMD analysis of your own data for published works, please cit
 
 ## Getting started
 
-You will need the Python analysis scripts from [dcTMD](https://github.com/floWneffetS/dcTMD) as well as the C++ Langevin equation integrator code and Jupyter notebooks from [here](https://github.com/floWneffetS/Langevin_T_boost).
+You will need the Python analysis scripts from [dcTMD](https://github.com/floWneffetS/dcTMD) as well as the C++ Langevin equation integrator code and Jupyter notebooks from [here](https://github.com/floWneffetS/Langevin_T_boost). Simulations need to be carried out in [Gromacs v2018 and higher](https://manual.gromacs.org/documentation/). Older versions support constraint pulling, as well, but you need to adjust the syntax in the MDP files accordingly. 
+
+**Note:** You may also use other simulation MD software packages for the simulations that support constraint pulling (e.g. CHARMM). The dcTMD analysis only requires a 
+
+In the following, we assume that you are familiar with the general usage of Gromacs. Good tutorials on how to use the program can be found [here](http://www.mdtutorials.com/gmx/).
 
 ## TMD simulation
 
@@ -47,7 +50,9 @@ Index file:
 
 ### Carrying out simulations
 
-
+'''
+tar -xvf ./tutorial_files.tar
+'''
 
 ## dcTMD analysis
 
