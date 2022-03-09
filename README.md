@@ -98,6 +98,16 @@ For all further analysis, you require the `3ptb_AMBER99SB_ben_pushRUN_0.001_*_pu
 
 ## dcTMD analysis
 
+Within the folder containing the `*pullf.xvg` pulling force files, use our dcTMD script as:
+```
+python3 NEQGamma.py -i 3ptb_AMBER99SB_ben_pushRUN_0.001_ -s _pullf -o 3ptb_AMBER99SB_ben_pushRUN_0.001_dG.dat -ofrict 3ptb_AMBER99SB_ben_pushRUN_0.001_frict.dat -vel 0.001 -T 290.15 -N 100 -av 40000 -sigma 40000
+```
+The respecitve flags read:
+- `-i`: the prefix of all force files (needs to be identic)
+- `-s`: the suffix of all force files excluding the `*.xvg` ending (needs to be identic, too)
+- `-o`: the output name for the file containing the dissipation-corrected free energy estimate.
+- - test
+- - test
 
 
 ## Langevin simulations
