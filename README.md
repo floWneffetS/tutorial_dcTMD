@@ -116,7 +116,7 @@ The respecitve flags read:
   - column #4: Gaussian filtered Gamma
   - column #5: running average window filtered Gamma
 - `-vel`: pulling velocity used in the simulations in nm/ps
-- `-T`: temperature used in the pulling simulations
+- `-T`: temperature used in the pulling simulations in K
 - `-N`: number of input trajectories
 - `-av`: width in data points of the running average window. We recommend to use a width of 40 to 200 per 1000 data points.
 - `-sigma`: sigma width in data points of the Gaussian filter. We recommend to use a sigma of 40 per 1000 data points.
@@ -149,3 +149,19 @@ for i in 400 450 500 550 600 650 700 750 800 850 900
 do 
 ./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i$.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 5000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
 done
+```
+The program flags indicate:
+- `-start`: name of file with starting point in nm
+- `-free`: name of file with free energy (x,G(x)) in kJ/mol
+- `-gamma`: name of file with friction (x,Gamma(x)) in units kg/(mol*ns), equals the kJ ps /(mol nm^2) from Gromacs
+- `-mass`: name of file with mass in kg/mol
+- `-o`: name of output trajectory with units of ns and nm
+- `-t`: integration timestep in ns 
+- `-T`: temperature in K
+- `-I`: seed random number generator 
+- `-L`: length of output trajectory in points
+- `-s`: write out every sth point - each point counts as one point for the length of `-L`
+- `-n`: number of points of the free energy in the input free energy file
+- `-ngamma`: number of points of Gamma in the input friction file
+  
+Here we gegnerate one single Langevin trajectory file of 5 ms length per temperatrue. On a single core of a modern PC, this should require ca. 5 hours 
