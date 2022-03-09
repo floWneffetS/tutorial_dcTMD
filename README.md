@@ -103,15 +103,24 @@ Within the folder containing the `*pullf.xvg` pulling force files, use our dcTMD
 python3 NEQGamma.py -i 3ptb_AMBER99SB_ben_pushRUN_0.001_ -s _pullf -o 3ptb_AMBER99SB_ben_pushRUN_0.001_dG.dat -ofrict 3ptb_AMBER99SB_ben_pushRUN_0.001_frict.dat -vel 0.001 -T 290.15 -N 100 -av 40000 -sigma 40000
 ```
 The respecitve flags read:
-- `-i`: the prefix of all force files (needs to be identic)
-- `-s`: the suffix of all force files excluding the `*.xvg` ending (needs to be identic, too)
-- `-o`: the output name for the file containing the dissipation-corrected free energy estimate with:
+- `-i`: prefix of all force files (needs to be identic)
+- `-s`: suffix of all force files excluding the `*.xvg` ending (needs to be identic, too)
+- `-o`: output name for the file containing the dissipation-corrected free energy estimate with:
   - column #1: x axis in nm
   - column #2: non-equilibrium work <W>
   - column #3: fricition coefficient Gamma
   - column #4: dissipative work estimate 
   - column #5: free energy estimate 
-- `ofrict`: the output name for the file containing a closer analysis of the friction:
+- `-ofrict`: output name for the file containing a closer analysis of the friction:
   - column #1: x axis in nm
-
+  - column #2: force autocorrelation function (with center time equal to the last time point)
+  - column #3: friction coefficient Gamma
+  - column #4: Gaussian filtered Gamma
+  - column #5: running average window filtered Gamma
+- `-vel`: pulling velocity used in the simulations in nm/ps
+- `-T`: temperature used in the pulling simulations
+- `-N`: number of input trajectories
+- `-av`: 
+  
+  
 ## Langevin simulations
