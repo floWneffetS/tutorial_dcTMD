@@ -76,22 +76,28 @@ gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushEQUIBRUN_001
 ```
 As these initial runs only require simulations of 0.1 ns length, they should be ready within a reasonably short time, i.e., some minutes.
 
-When all equilibration simulations simulations have been carried out, prepare the individual pulling trajectories via:
+When all equilibration simulations simulations have been carried out, prepare a separate directory for the pulling simulations and the individual pulling input TPR files via:
 ```
+cd ..
+mkdir v0.001
+cd v0.001/
+
 for i in {000..099}
 do
-gmx grompp -f ../3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp -c 3ptb_AMBER99SB_ben_pushEQUIBRUN_"$i".gro -p ../3ptb_AMBER99SB_ben.top -n ../3ptb_AMBER99SB_ben.ndx -o 3ptb_AMBER99SB_ben_pushRUN_0.001_"$i".tpr
+gmx grompp -f ../3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp -c ../equib/3ptb_AMBER99SB_ben_pushEQUIBRUN_"$i".gro -p ../3ptb_AMBER99SB_ben.top -n ../3ptb_AMBER99SB_ben.ndx -o 3ptb_AMBER99SB_ben_pushRUN_0.001_"$i".tpr
 done
 ```
-and run them via e.g.:
+Note that the notation `*_0.001_*` stands for a velocity in Gromacs units of 0.001 nm/ps, i.e., 1 m/s. To our current experience, this is a sweet-spot velocity with the best trade-off between slow pulling and minimal computational effort. Run the simulations via e.g.:
 ```
-gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushRUN_0.001_001
+gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushRUN_0.001_000
 ```
-Note that the notation `*_0.001_*` stands for a velocity in Gromacs units of 0.001 nm/ps, i.e., 1 m/s. To our current experience, this is a sweet-spot velocity with the best trade-off between slow pulling and minimal computational effort. These simulations will require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
+These simulations will require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
 
-
+For all further analysis, you require the `3ptb_AMBER99SB_ben_pushRUN_0.001_*_pullf.xvg` files (with `*` denoting the respective run number).
 
 
 ## dcTMD analysis
+
+
 
 ## Langevin simulations
