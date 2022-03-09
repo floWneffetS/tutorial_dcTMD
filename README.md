@@ -1,5 +1,5 @@
 # tutorial_dcTMD
-Tutorial for using the usage of the dcTMD approach and Langevin simulations using the trypsin-benzamidine complex as example. Required programs are Gromacs v2018 and higher, the script NEQGamma.py from the dcTMD repository, and LE_1dim_reflect.cpp from the Langevin_T_boost repository.
+Tutorial for using the usage of the dcTMD approach and Langevin simulations using the trypsin-benzamidine complex (see Wolf et al., Nat. Commun. 2020, 11, 2918) as example. Required programs are Gromacs v2018 and higher, the script NEQGamma.py from the dcTMD repository, and LE_1dim_reflect.cpp from the Langevin_T_boost repository.
 
 The basis of this tutorial are constraint pulling simulations as described in 
 
