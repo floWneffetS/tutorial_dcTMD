@@ -23,7 +23,13 @@ In the following, we assume that you are familiar with the general usage of Grom
 ## TMD simulation
 
 ### Input files
-Download and unpack tutorial_files.tar.gz. You will find a folder with the following files:
+Download and unpack tutorial_files.tar.gz via
+
+```
+tar -xvf ./tutorial_files.tar
+```
+
+You will find a folder with the following files:
 
 Files for run input commands:
 `3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp 
@@ -50,9 +56,6 @@ Index file:
 
 ### Carrying out simulations
 
-```
-tar -xvf ./tutorial_files.tar
-```
 
 ## dcTMD analysis
 
