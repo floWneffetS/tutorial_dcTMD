@@ -96,6 +96,8 @@ For all further analysis, you require the `3ptb_AMBER99SB_ben_pushRUN_0.001_*_pu
 
 ## dcTMD analysis
 
+### Carrying out the analysis
+
 Within the folder containing the `*pullf.xvg` pulling force files, use our dcTMD script as:
 ```
 python3 NEQGamma.py -i 3ptb_AMBER99SB_ben_pushRUN_0.001_ -s _pullf -o 3ptb_AMBER99SB_ben_pushRUN_0.001_dG.dat -ofrict 3ptb_AMBER99SB_ben_pushRUN_0.001_frict.dat -vel 0.001 -T 290.15 -N 100 -av 40000 -sigma 40000
@@ -120,6 +122,8 @@ The respecitve flags read:
 - `-N`: number of input trajectories
 - `-av`: width in data points of the running average window. We recommend to use a width of 40 to 200 per 1000 data points.
 - `-sigma`: sigma width in data points of the Gaussian filter. We recommend to use a sigma of 40 per 1000 data points.
+
+### Results of the analysis
   
 A typical output of the free energy file for this tutorial would look like this:
 ![energy comparison](https://github.com/floWneffetS/tutorial_dcTMD/blob/main/figs/Tryp_100traj_energies.png)
@@ -128,6 +132,10 @@ The Gauss- and average window-filtered friction profiles (with a point width of 
 ![friction comparison](https://github.com/floWneffetS/tutorial_dcTMD/blob/main/figs/Tryp_100traj_friction.png)
   
 Please note that the friction factors are very noisy and converge very badly. This is natural, as they technically are a measure of the force variance, whose estimator converges significantly slower than the one of the mean force. However, the only sources of this noise comes from thermal fluctuations and therefore can be removed via the two filtering functions. The exact width for the filter functions is a heuristic parameter that varies between investigated systems. As general guideline: remember that friction has to be always positive, so `-av` and `-sigma` should be chosen such that this constraint is fullfilled. We usually use the Gauss-filtered data for display and Langevin simulations.
+  
+### The friction overestimation artefact
+
+In your analysis you may encounter a....
   
   
 ## Temperature-boosted Langevin simulations
@@ -147,7 +155,7 @@ You will need to decide on a suitable temperature range for your T-boosting calc
 ```
 for i in 400 450 500 550 600 650 700 750 800 850 900
 do 
-./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i$.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
+./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
 done
 ```
 The program flags indicate:
@@ -166,4 +174,8 @@ The program flags indicate:
   
 Here we gegnerate one single Langevin trajectory file of 1 ms length per temperature. On a single core of a modern PC, this should require ca. 5 hours. Alternatively, you may start 5 simulations with 0.2 ms length each ad different seed, which is actually beneficial for convergence.
   
-After completion of the simulations, use the Pytho script `LE_bin_corer.py` to core the data (see e.g. [Nagel et al.](https://aip.scitation.org/doi/10.1063/1.5081767) for the background of this approach) and write out files conntaining the observed transition times. For trypsin, we decided to attribute distances <0.3 nm to the bound state coree, and distances >0.9 nm to the unnbound state core. 
+After completion of the simulations, use the Pytho script `LE_bin_corer.py` to core the data (see e.g. [Nagel et al.](https://aip.scitation.org/doi/10.1063/1.5081767) for the background of this approach) and write out files conntaining the observed transition times. For trypsin, we decided to attribute distances <0.3 nm to the bound state coree, and distances >0.9 nm to the unnbound state core. Use the script simply as e.g.
+```
+./LE_bin_corer.py -i Trypsin_LE_5fsdt_5ms_1pmres_400K
+```
+ommiting the `.dat` ending. The output will be the two files `Trypsin_LE_5fsdt_5ms_1pmres_400K_left_to_right.dat` and `Trypsin_LE_5fsdt_5ms_1pmres_400K_right_to_left.dat`. `left` signifies here the "left" side of the x axis, i.e., the bound state, and `right` the "right" side, i.e., the unbound state. Hence, `*left_to_right.dat` contains statistics on the unbinding waiting times, and `*right_to_left.dat` on the binding waiting times. **Note:** 
