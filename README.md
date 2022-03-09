@@ -1,5 +1,5 @@
 # tutorial_dcTMD
-Tutorial for using the usage of the dcTMD approach and Langevin simulations using the trypsin-benzamidine complex (see Wolf et al., Nat. Commun. 2020, 11, 2918) as example. Required programs are Gromacs v2018 and higher, the script NEQGamma.py from the dcTMD repository, and LE_1dim_reflect.cpp from the Langevin_T_boost repository.
+Tutorial for using the usage of the dcTMD approach and Langevin simulations using the trypsin-benzamidine complex (see [Wolf et al., Nat. Commun. 2020, 11, 2918](https://www.nature.com/articles/s41467-020-16655-1)) as example. Required programs are Gromacs v2018 and higher, the script NEQGamma.py from the dcTMD repository, and LE_1dim_reflect.cpp from the Langevin_T_boost repository.
 
 The basis of this tutorial are constraint pulling simulations as described in 
 
@@ -26,11 +26,13 @@ posre_ben.itp
 
 Index file:
 `3ptb_AMBER99SB_ben.ndx`
-Important: the index file needs to include an anchor group from where the ligand is pulled away (in this case: the group `[sheet]` containing C-alpha atoms from the central beta-sheet) and the ligand itself (or better, the heavy atoms of the ligand, here group `[ BEN_heavy ]`).
+**Important:** the index file needs to include an anchor group from where the ligand is pulled away (in this case: the group `[sheet]` containing C-alpha atoms from the central beta-sheet) and the ligand itself (or better, the heavy atoms of the ligand, here group `[ BEN_heavy ]`). If you want to create a reespective anchor index for your own simulation problem, choose an anchor group that is tighly coinnected to the remainder of the protein (such as C-alpha atoms in alpha-helices and beta-sheets)
 
 Structure file: `3ptb_AMBER99SB_ben.gro` in which the trypsin-bezamidine complex is equilibrated in TIP3P water with a physiological NaCl concentration and a single Ca2+ ion.
 
 ### Carrying out simulations
+
+
 
 ## dcTMD analysis
 
