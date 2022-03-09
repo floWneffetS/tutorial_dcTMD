@@ -141,4 +141,11 @@ Alternatively, you may download and unpack the respective TAR archive containing
 ```
 tar -xzvf ./Tboost_tutorial_files.tar
 ```
-and continue from there. Furthermore, download the 
+and continue from there. Furthermore, download the C++ code, the CMake file and the two Jupyter notebooks from [the T-boosting repository](https://github.com/floWneffetS/Langevin_T_boost). Follow the instructions there to compile the Langevin integrator code.
+  
+You will need to decide on a suitable temperature range for your T-boosting calculations. This requires a bit of testing and is different for each system. In the case of Trypsin as used here, a temperature range of 400 to 900 K is a good start. As a rule of thumb, you should observe several 1000s of transitions over the main barrier for the highest temperture. Start Langevin simulations using the Langevin integrator as:
+```
+for i in 400 450 500 550 600 650 700 750 800 850 900
+do 
+./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i$.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 5000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
+done
