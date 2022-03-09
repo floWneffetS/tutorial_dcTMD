@@ -106,8 +106,8 @@ The respecitve flags read:
 - `-i`: the prefix of all force files (needs to be identic)
 - `-s`: the suffix of all force files excluding the `*.xvg` ending (needs to be identic, too)
 - `-o`: the output name for the file containing the dissipation-corrected free energy estimate.
-- - test
-- - test
+  - test
+  - test
 
 
 ## Langevin simulations
