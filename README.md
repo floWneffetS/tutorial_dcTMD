@@ -35,7 +35,9 @@ Files for run input commands:
 `3ptb_AMBER99SB_ben_pushEQUIBRUN.mdp 
 3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp
 `
-The `pushEQUIBRUN.mdp` file is an initial equilibration file for generating start simulation files with different initial velocity distributions. The `pushRUN_v0.001.mdp` file is the respective command input for the non-equilibrium pulling. `3ptb` refers to the protein data base code of a trypsin structure, `AMBER99SB` to the employed force field, and `ben` to the benzamidine ligand.
+- The `pushEQUIBRUN.mdp` file is an initial equilibration file for generating start simulation files with different initial velocity distributions. 
+- The `pushRUN_v0.001.mdp` file is the respective command input for the non-equilibrium pulling. 
+- `3ptb` refers to the protein data base code of a trypsin structure, `AMBER99SB` to the employed force field, and `ben` to the benzamidine ligand.
 
 Structure file: `3ptb_AMBER99SB_ben.gro` in which the trypsin-bezamidine complex is equilibrated in TIP3P water with a physiological NaCl concentration and a single Ca2+ ion.
 
