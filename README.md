@@ -123,6 +123,9 @@ The respecitve flags read:
 - `-av`: width in data points of the running average window. We recommend to use a width of 40 to 200 per 1000 data points.
 - `-sigma`: sigma width in data points of the Gaussian filter. We recommend to use a sigma of 40 per 1000 data points.
   
+A typical output of the free enrgy file would look like this:
+![energy comparison](https://github.com/floWneffetS/tutorial_dcTMD/blob/main/figs/Tryp_100traj_energies.png)
+  
 Please note that the friction factors are very noisy and converge very badly. This is natural, as they technically are a measure of the force variance, whose estimator converges significantly slower than the one of the mean force. However, the only sources of this noise comes from thermal fluctuations and therefore can be removed via the two filtering functions. The exact width for the filter functions is a heuristic parameter that varies between investigated systems. As general guideline: remember that friction has to be always positive, so `-av` and `-sigma` should be chosen such that this constraint is fullfilled. 
   
   
