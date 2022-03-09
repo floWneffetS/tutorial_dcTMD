@@ -105,9 +105,13 @@ python3 NEQGamma.py -i 3ptb_AMBER99SB_ben_pushRUN_0.001_ -s _pullf -o 3ptb_AMBER
 The respecitve flags read:
 - `-i`: the prefix of all force files (needs to be identic)
 - `-s`: the suffix of all force files excluding the `*.xvg` ending (needs to be identic, too)
-- `-o`: the output name for the file containing the dissipation-corrected free energy estimate.
-  - test
-  - test
-
+- `-o`: the output name for the file containing the dissipation-corrected free energy estimate with:
+  - column #1: x axis in nm
+  - column #2: non-equilibrium work <W>
+  - column #3: fricition coefficient Gamma
+  - column #4: dissipative work estimate 
+  - column #5: free energy estimate 
+- `ofrict`: the output name for the file containing a closer analysis of the friction:
+  - column #1: x axis in nm
 
 ## Langevin simulations
