@@ -24,11 +24,9 @@ In the following, we assume that you are familiar with the general usage of Grom
 
 ### Input files
 Download and unpack tutorial_files.tar.gz via
-
 ```
 tar -xzvf ./tutorial_files.tar
 ```
-
 You will find a folder with the following files:
 
 Files for run input commands:
@@ -129,7 +127,18 @@ A typical output of the free energy file for this tutorial would look like this:
 The Gauss- and average window-filtered friction profiles (with a point width of 40000 for both `-av` and `-sigma`) would look like this:
 ![friction comparison](https://github.com/floWneffetS/tutorial_dcTMD/blob/main/figs/Tryp_100traj_friction.png)
   
-Please note that the friction factors are very noisy and converge very badly. This is natural, as they technically are a measure of the force variance, whose estimator converges significantly slower than the one of the mean force. However, the only sources of this noise comes from thermal fluctuations and therefore can be removed via the two filtering functions. The exact width for the filter functions is a heuristic parameter that varies between investigated systems. As general guideline: remember that friction has to be always positive, so `-av` and `-sigma` should be chosen such that this constraint is fullfilled. 
+Please note that the friction factors are very noisy and converge very badly. This is natural, as they technically are a measure of the force variance, whose estimator converges significantly slower than the one of the mean force. However, the only sources of this noise comes from thermal fluctuations and therefore can be removed via the two filtering functions. The exact width for the filter functions is a heuristic parameter that varies between investigated systems. As general guideline: remember that friction has to be always positive, so `-av` and `-sigma` should be chosen such that this constraint is fullfilled. We usually use the Gauss-filtered data for display and Langevin simulations.
   
   
 ## Temperature-boosted Langevin simulations
+
+Take your self-generated free energy and friction files and generate two new files in which you 
+- only contain the two columns with x and the free energy
+- only contain the two columns with x and the Gauss-filtered friction.
+You may want to reduce the resolution of both files down to 1 pm. 
+  
+Alternatively, you may download and unpack the respective TAR archive containing two such files via
+```
+tar -xzvf ./Tboost_tutorial_files.tar
+```
+and continue from there. Furthermore, download the 
