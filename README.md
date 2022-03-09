@@ -135,7 +135,7 @@ Please note that the friction factors are very noisy and converge very badly. Th
   
 ### The friction overestimation artefact
 
-In your analysis you may encounter a....
+In your analysis you may encounter a significat drop in free energy to unfeasibly low (and even negative) values up to several hundrets of kJ/mol. This clearly erroneous result stems from an overestimation of friction coming from the presence of different unbinding pathways. In this case you will need to cluster trajectories accordingly to the pathways they take out of the binding site and perform the friction correction for each cluster of trajectories separately. For more details, please consult [Wolf et al. Nat. Commun. 2020](https://www.nature.com/articles/s41467-020-16655-1) or the authors of this article directly.
   
   
 ## Temperature-boosted Langevin simulations
