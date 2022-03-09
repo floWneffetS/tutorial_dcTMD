@@ -147,7 +147,7 @@ You will need to decide on a suitable temperature range for your T-boosting calc
 ```
 for i in 400 450 500 550 600 650 700 750 800 850 900
 do 
-./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i$.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 5000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
+./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i$.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
 done
 ```
 The program flags indicate:
@@ -156,12 +156,12 @@ The program flags indicate:
 - `-gamma`: name of file with friction (x,Gamma(x)) in units kg/(mol*ns), equals the kJ ps /(mol nm^2) from Gromacs
 - `-mass`: name of file with mass in kg/mol
 - `-o`: name of output trajectory with units of ns and nm
-- `-t`: integration timestep in ns 
+- `-t`: integration timestep in ns (so here: 5 fs)
 - `-T`: temperature in K
-- `-I`: seed random number generator 
-- `-L`: length of output trajectory in points
-- `-s`: write out every sth point - each point counts as one point for the length of `-L`
+- `-I`: seed for random number generator (we use the info from the bash varriable $i as a pseudo-random seed)
+- `-s`: write out every sth point, so here a point in time is written out each nanosecond
+- `-L`: length of output trajectory in points defined in `-s`, so here 1 ms
 - `-n`: number of points of the free energy in the input free energy file
 - `-ngamma`: number of points of Gamma in the input friction file
   
-Here we gegnerate one single Langevin trajectory file of 5 ms length per temperatrue. On a single core of a modern PC, this should require ca. 5 hours 
+Here we gegnerate one single Langevin trajectory file of 1 ms length per temperatrue. On a single core of a modern PC, this should require ca. 5 hours. Alternatively, you may start 5 simulations with 0.2 ms length each.
