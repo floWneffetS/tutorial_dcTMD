@@ -166,7 +166,7 @@ The program flags indicate:
 - `-o`: name of output trajectory with units of ns and nm
 - `-t`: integration timestep in ns (so here: 5 fs)
 - `-T`: temperature in K
-- `-I`: seed for random number generator (we use the info from the bash varriable $i as a pseudo-random seed)
+- `-I`: seed for random number generator (we use the info from the bash variable $i as a pseudo-random seed)
 - `-s`: write out every sth point, so here a point in time is written out each nanosecond
 - `-L`: length of output trajectory in points defined in `-s`, so here 1 ms
 - `-n`: number of points of the free energy in the input free energy file
