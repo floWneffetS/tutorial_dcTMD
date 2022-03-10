@@ -89,7 +89,7 @@ Note that the notation `*_0.001_*` stands for a velocity in Gromacs units of 0.0
 ```
 gmx mdrun -v -deffnm 3ptb_AMBER99SB_ben_pushRUN_0.001_000
 ```
-These simulations will require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
+These simulations will each require 1-2 hours on a modern workstation, so you better run them in parallel on a HPC cluster of your choice.
 
 For all further analysis, you require the `3ptb_AMBER99SB_ben_pushRUN_0.001_*_pullf.xvg` files (with `*` denoting the respective run number).
 
