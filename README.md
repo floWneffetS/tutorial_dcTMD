@@ -153,9 +153,9 @@ and continue from there. Furthermore, download the C++ code, the CMake file and 
   
 You will need to decide on a suitable temperature range for your T-boosting calculations. This requires a bit of testing and is different for each system. In the case of Trypsin as used here, a temperature range of 400 to 900 K is a good start. As a rule of thumb, you should observe several 1000s of transitions over the main barrier for the highest temperature. The notebook `error_estimation_T_boosting.ipynb` helps you to estimate the number of temperature points and transitions for the convergence of transition rates. You need to generate the two files `start.dat` containing an arbitrary point along x to start the simulation (e.g., 1.0) and `Try_ligmass.dat` containing the ligand mass in kg/mol. Remember that in case of Trypsin as used here, transition rates are independent from the mass used, so we can here use an arbitrary high mass of 10 times benzamidine's mass and by this increase the Langevin time step to 5 fs (see again [Wolf et al. Nat. Commun. 2020](https://www.nature.com/articles/s41467-020-16655-1)). Start Langevin simulations using the Langevin integrator as:
 ```
-for i in 400 450 500 550 600 650 700 750 800 850 900
+for i in 400 500 600 700 800 900
 do 
-./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.dat -t 0.000005 -T "$i" -I 89492"$i"90093 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
+./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.dat -t 0.000005 -T "$i" -I 92"$i"993 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
 done
 ```
 The program flags indicate:
@@ -182,4 +182,4 @@ ommiting the `.dat` ending. The output will be the two files `Trypsin_LE_5fsdt_5
 
 ## The "quick-and-dirty" approach: Strict non-equilibrium simulations
 
-If you are not interested in the detailed free energy of a single ligand, but want to make a quick estimate for a set of ligands which one of them is the slowest unbinder, you can use the mean non-equilibrium pulling work <W> as a scoring value, with high values of $<W>$ corresponding to slow unbinding dynamics. For further details consult [Wolf et al. JCTC 2019](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.9b00592). In a nutshell: you simply take the `3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp` file and increase the pulling velocity to 10 m/s. Run 30-100 simulations per ligand, and calculate <W> for each ligand independently. **Note:** This approach ONLY works if all ligands in the set share the same chemical scaffold.
+If you are not interested in the detailed free energy of a single ligand, but want to make a quick estimate for a set of ligands which one of them is the slowest unbinder, you can use the mean non-equilibrium pulling work <W> as a scoring value, with high values of <W> corresponding to slow unbinding dynamics. For further details consult [Wolf et al. JCTC 2019](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.9b00592). In a nutshell: you simply take the `3ptb_AMBER99SB_ben_pushRUN_v0.001.mdp` file and increase the pulling velocity to 10 m/s. Run 30-100 simulations per ligand, and calculate <W> for each ligand independently. **Note:** This approach ONLY works if all ligands in the set share the same chemical scaffold.
