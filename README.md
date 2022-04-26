@@ -25,7 +25,7 @@ In the following, we assume that you are familiar with the general usage of Grom
 ### Input files
 Download and unpack tutorial_files.tar.gz via
 ```
-tar -xzvf ./tutorial_files.tar
+tar -xzvf ./tutorial_files.tar.gz
 ```
 You will find a folder with the following files:
 
