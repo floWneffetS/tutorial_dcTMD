@@ -98,6 +98,8 @@ For all further analysis, you require the `3ptb_AMBER99SB_ben_pushRUN_0.001_*_pu
 
 ### Carrying out the analysis
 
+The dcTMD analysis is based on our dcTMD program packagea vailable under \url{https://github.com/moldyn/dcTMD}.
+
 Within the folder containing the `*pullf.xvg` pulling force files, use our dcTMD script as:
 ```
 python3 NEQGamma.py -i 3ptb_AMBER99SB_ben_pushRUN_0.001_ -s _pullf -o 3ptb_AMBER99SB_ben_pushRUN_0.001_dG.dat -ofrict 3ptb_AMBER99SB_ben_pushRUN_0.001_frict.dat -vel 0.001 -T 290.15 -N 100 -av 40000 -sigma 40000
