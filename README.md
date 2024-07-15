@@ -106,6 +106,12 @@ via
 python3 -m pip install git+ssh://git@github.com/moldyn/dcTMD.git
 ```
 
+For further details, see the tutorial for the dcTMD code under https://moldyn.github.io/dcTMD/tutorials/Gromacs/. 
+
+### The friction overestimation artefact
+
+In your analysis you may encounter a significant drop in free energy to unfeasibly low (and even negative) values up to several hundreds of kJ/mol. This clearly erroneous result stems from an overestimation of friction coming from the presence of different unbinding pathways (cf. [Jäger et al., JCTC 2022, 18, 494](https://pubs.acs.org/doi/full/10.1021/acs.jctc.1c00426), Fig. 3, for a nice example of this artefact and its source). In this case you will need to cluster trajectories accordingly to the pathways they take out of the binding site and perform the friction correction for each cluster of trajectories separately (cf. []() for the theory the approach is based on). We recommend to search for pathways by a PCA-guided trajectory analysis followed by a Leiden community detection, as described in [Wolf et al. Nat. Commun. 2020](https://www.nature.com/articles/s41467-020-16655-1) or the authors of this article directly.
+
 ### Results of the analysis
   
 A typical output of the free energy file for this tutorial would look like this:
@@ -115,10 +121,6 @@ The Gauss- and average window-filtered friction profiles (with a point width of 
 ![friction comparison](https://github.com/floWneffetS/tutorial_dcTMD/blob/main/figs/Tryp_100traj_friction.png)
   
 Please note that the friction factors are very noisy and converge very badly. This is natural, as they technically are a measure of the force variance, whose estimator converges significantly slower than the one of the mean force. However, the only sources of this noise comes from thermal fluctuations and therefore can be removed via the two filtering functions. The exact width for the filter functions is a heuristic parameter that varies between investigated systems. As general guideline: remember that friction has to be always positive, so `-av` and `-sigma` should be chosen such that this constraint is fulfilled. We usually use the Gauss-filtered data for display and Langevin simulations.
-  
-### The friction overestimation artefact
-
-In your analysis you may encounter a significant drop in free energy to unfeasibly low (and even negative) values up to several hundreds of kJ/mol. This clearly erroneous result stems from an overestimation of friction coming from the presence of different unbinding pathways (cf. [Jäger et al., JCTC 2022, 18, 494](https://pubs.acs.org/doi/full/10.1021/acs.jctc.1c00426), Fig. 3, for a nice example of this artefact and its source). In this case you will need to cluster trajectories accordingly to the pathways they take out of the binding site and perform the friction correction for each cluster of trajectories separately. For more details, please consult [Wolf et al. Nat. Commun. 2020](https://www.nature.com/articles/s41467-020-16655-1) or the authors of this article directly.
   
   
 ## Temperature-boosted Langevin simulations
@@ -133,6 +135,8 @@ Alternatively, you may download and unpack the respective TAR archive containing
 tar -xzvf ./Tboost_tutorial_files.tar
 ```
 and continue from there. Furthermore, download the C++ code, the CMake file and the two Jupyter notebooks from [the T-boosting repository](https://github.com/floWneffetS/Langevin_T_boost). Follow the instructions there to compile the Langevin integrator code.
+
+**IMPORTANT:** the Langevin code does not accept negative friction values, which may occurr due to sampling problems. The input friction profile needs to be sufficiently smoothened to remove such negative friction values.
   
 You will need to decide on a suitable temperature range for your T-boosting calculations. This requires a bit of testing and is different for each system. In the case of Trypsin as used here, a temperature range of 400 to 900 K is a good start. As a rule of thumb, you should observe several 1000s of transitions over the main barrier for the highest temperature. The notebook `error_estimation_T_boosting.ipynb` helps you to estimate the number of temperature points and transitions for the convergence of transition rates. You need to generate the two files `start.dat` containing an arbitrary point along x to start the simulation (e.g., 1.0) and `Try_ligmass.dat` containing the ligand mass in kg/mol. Remember that in case of Trypsin as used here, transition rates are independent from the mass used, so we can here use an arbitrary high mass of 10 times benzamidine's mass and by this increase the Langevin time step to 5 fs (see again [Wolf et al. Nat. Commun. 2020](https://www.nature.com/articles/s41467-020-16655-1)). Start Langevin simulations using the Langevin integrator as:
 ```
