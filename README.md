@@ -6,7 +6,7 @@ The basis of this tutorial are constraint pulling simulations as described in [W
 
 If you perform a dcTMD analysis of your own data for published works, please cite the appropriate literature:
 
-- for the dcTMD analysis itself: _Wolf, S., & Stock, G. (2018). Targeted Molecular Dynamics Calculations of Free Energy Profiles Using a Nonequilibrium Friction Correction. Journal of Chemical Theory and Computation, 14, 6175–6182._
+- for the dcTMD analysis itself: _Wolf, S., & Stock, G. (2018). Targeted Molecular Dynamics Calculations of Free Energy Profiles Using a Nonequilibrium Friction Correction. J. Chem. Theory Comput., 14, 6175–6182._
 - for temperature-boosted Langevin equation simulations: _Wolf, S., Lickert, B., Bray, S., & Stock, G. (2020). Multisecond ligand dissociation dynamics from atomistic simulations. Nature Communications, 11(1), 2918. http://doi.org/10.1038/s41467-020-16655-1_
 - for pathway separations: _Tänzel, V., Jäger, M. & Wolf, S. (2024) Learning Protein–Ligand Unbinding Pathways via Single-Parameter Community Detection. J. Chem. Theory Comput. 20, 5058–5067_; _Wolf, S., Post, M. & Stock, G. (2023) Path separation of dissipation-corrected targeted molecular dynamics simulations of protein–ligand unbinding. J. Chem. Phys. 158, 124106_.
 
