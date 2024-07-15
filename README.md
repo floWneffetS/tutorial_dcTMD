@@ -143,7 +143,8 @@ You will need to decide on a suitable temperature range for your T-boosting calc
 ```
 for i in 400 500 600 700 800 900
 do 
-./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.dat -t 0.000005 -T "$i" -I 92"$i"993 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
+
+./LE_1dim_reflect -start start.dat -free Trypsin_all_1pm_dG.dat -gamma Trypsin_all_1pm_frict.dat -mass Try_ligmass.dat -o Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.dat -t 0.000005 -T "$i" -I 42"$i"993 -L 1000000 -s 200000 -n 2001 -ngamma 2001 >& Trypsin_LE_5fsdt_5ms_1pmres_"$i"K.log & 
 done
 ```
 The program flags indicate:
