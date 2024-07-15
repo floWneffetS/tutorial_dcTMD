@@ -7,7 +7,8 @@ The basis of this tutorial are constraint pulling simulations as described in [W
 If you perform a dcTMD analysis of your own data for published works, please cite the appropriate literature:
 
 - for the dcTMD analysis itself: _Wolf, S., & Stock, G. (2018). Targeted Molecular Dynamics Calculations of Free Energy Profiles Using a Nonequilibrium Friction Correction. Journal of Chemical Theory and Computation, 14, 6175–6182._
-- for temperature-boosted Langevin equation simulations and/or in case you need to perform a pathway separation: _Wolf, S., Lickert, B., Bray, S., & Stock, G. (2020). Multisecond ligand dissociation dynamics from atomistic simulations. Nature Communications, 11(1), 2918. http://doi.org/10.1038/s41467-020-16655-1_
+- for temperature-boosted Langevin equation simulations: _Wolf, S., Lickert, B., Bray, S., & Stock, G. (2020). Multisecond ligand dissociation dynamics from atomistic simulations. Nature Communications, 11(1), 2918. http://doi.org/10.1038/s41467-020-16655-1_
+- for pathway separations: _Tänzel, V., Jäger, M. & Wolf, S. (2024) Learning Protein–Ligand Unbinding Pathways via Single-Parameter Community Detection. J. Chem. Theory Comput. 20, 5058–5067_; _Wolf, S., Post, M. & Stock, G. (2023) Path separation of dissipation-corrected targeted molecular dynamics simulations of protein–ligand unbinding. J. Chem. Phys. 158, 124106_.
 
 
 # Tutorial
@@ -110,7 +111,7 @@ For further details, see the tutorial for the dcTMD code under https://moldyn.gi
 
 ### The friction overestimation artefact
 
-In your analysis you may encounter a significant drop in free energy to unfeasibly low (and even negative) values up to several hundreds of kJ/mol. This clearly erroneous result stems from an overestimation of friction coming from the presence of different unbinding pathways (cf. [Jäger et al., JCTC 2022, 18, 494](https://pubs.acs.org/doi/full/10.1021/acs.jctc.1c00426), Fig. 3, for a nice example of this artefact and its source). In this case you will need to cluster trajectories accordingly to the pathways they take out of the binding site and perform the friction correction for each cluster of trajectories separately (cf. []() for the theory the approach is based on). We recommend to search for pathways by a PCA-guided trajectory analysis followed by a Leiden community detection, as described in [Wolf et al. Nat. Commun. 2020](https://www.nature.com/articles/s41467-020-16655-1) or the authors of this article directly.
+In your analysis you may encounter a significant drop in free energy to unfeasibly low (and even negative) values up to several hundreds of kJ/mol. This clearly erroneous result stems from an overestimation of friction coming from the presence of different unbinding pathways (cf. [Jäger et al. JCTC 2022, 18, 494](https://pubs.acs.org/doi/full/10.1021/acs.jctc.1c00426), Fig. 3, for a nice example of this artefact and its source). In this case you will need to cluster trajectories accordingly to the pathways they take out of the binding site and perform the friction correction for each cluster of trajectories separately (cf. [Wolf et al. JCP 2023, 158, 124106](https://pubs.aip.org/aip/jcp/article/158/12/124106/2881566) for the theory the approach is based on). We recommend to search for pathways by a PCA-guided trajectory analysis followed by a Leiden community detection, as described in [Tänzel et al. JCTC 2024, 20, 5058](https://pubs.acs.org/doi/full/10.1021/acs.jctc.4c00250).
 
 ### Results of the analysis
   
