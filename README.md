@@ -98,32 +98,13 @@ For all further analysis, you require the `3ptb_AMBER99SB_ben_pushRUN_0.001_*_pu
 
 ### Carrying out the analysis
 
-The dcTMD analysis is based on our dcTMD program packagea vailable under \url{https://github.com/moldyn/dcTMD}.
+The dcTMD analysis is based on our dcTMD program packagea vailable under https://github.com/moldyn/dcTMD. For a detailed information 
+on how to use this tool, please refer to the respective documentation of the dcTMD project. The dcTMD Python package can be downloaded
+via 
 
-Within the folder containing the `*pullf.xvg` pulling force files, use our dcTMD script as:
 ```
-python3 NEQGamma.py -i 3ptb_AMBER99SB_ben_pushRUN_0.001_ -s _pullf -o 3ptb_AMBER99SB_ben_pushRUN_0.001_dG.dat -ofrict 3ptb_AMBER99SB_ben_pushRUN_0.001_frict.dat -vel 0.001 -T 290.15 -N 100 -av 40000 -sigma 40000
+python3 -m pip install git+ssh://git@github.com/moldyn/dcTMD.git
 ```
-The respective flags read:
-- `-i`: prefix of all force files (needs to be identic)
-- `-s`: suffix of all force files excluding the `*.xvg` ending (needs to be identic, too)
-- `-o`: output name for the file containing the dissipation-corrected free energy estimate with:
-  - column #1: x axis in nm
-  - column #2: non-equilibrium work <W>
-  - column #3: fricition coefficient Gamma
-  - column #4: dissipative work estimate 
-  - column #5: free energy estimate 
-- `-ofrict`: output name for the file containing a closer analysis of the friction:
-  - column #1: x axis in nm
-  - column #2: force autocorrelation function (with center time equal to the last time point)
-  - column #3: friction coefficient Gamma
-  - column #4: Gaussian filtered Gamma
-  - column #5: running average window filtered Gamma
-- `-vel`: pulling velocity used in the simulations in nm/ps
-- `-T`: temperature used in the pulling simulations in K
-- `-N`: number of input trajectories
-- `-av`: width in data points of the running average window. We recommend to use a width of 40 to 200 per 1000 data points.
-- `-sigma`: sigma width in data points of the Gaussian filter. We recommend to use a sigma of 40 per 1000 data points.
 
 ### Results of the analysis
   
